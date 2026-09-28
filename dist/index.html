@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferrashop | A Casa dos Parafusos & Equipamentos Industriais</title>
+  <meta name="description" content="A infraestrutura de fixadores e ferramentas pesadas no KM 472 da BR-153 em Paraíso do Tocantins. Mais de 5.000 parafusos, máquinas Airless, Tramontina PRO e ferragens pesadas.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+
+  <!-- Google Fonts: Inter (Linear/Vercel Classic) + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-black: #030407;
+      --bg-canvas: #07090E;
+      --bg-card: rgba(13, 17, 25, 0.7);
+      --bg-card-hover: rgba(20, 26, 38, 0.85);
+      
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-bright: rgba(255, 255, 255, 0.16);
+      --border-amber: rgba(245, 158, 11, 0.35);
+
+      --color-primary: #F59E0B;
+      --color-primary-light: #FBBF24;
+      --color-primary-glow: rgba(245, 158, 11, 0.18);
+      
+      --color-emerald: #10B981;
+      --color-emerald-glow: rgba(16, 185, 129, 0.25);
+
+      --text-main: #FFFFFF;
+      --text-muted: #94A3B8;
+      --text-dark: #64748B;
+
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-black);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* ================= LINEAR/VERCEL AMBIENT BACKGROUND ================= */
+    .ambient-aurora {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 600px;
+      background: radial-gradient(ellipse 60% 40% at 50% 20%, rgba(245, 158, 11, 0.14) 0%, rgba(234, 88, 12, 0.05) 50%, transparent 80%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-grid {
+      position: fixed;
+      inset: 0;
+      background-size: 48px 48px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, black 40%, transparent 90%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, black 40%, transparent 90%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-black); }
+    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+    /* ================= TYPOGRAPHY ================= */
+    .font-display { font-family: var(--font-display); }
+    .font-mono { font-family: var(--font-mono); }
+
+    .gradient-heading {
+      background: linear-gradient(180deg, #FFFFFF 20%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.035em;
+      font-weight: 800;
+    }
+
+    .gradient-amber {
+      background: linear-gradient(180deg, #FDE68A 0%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ================= LINEAR/VERCEL PILL BADGE ================= */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-bright);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #E2E8F0;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .pill-badge:hover {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+    }
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 8px var(--color-primary);
+      animation: pulseGold 2s infinite;
+    }
+    @keyframes pulseGold {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 12px var(--color-primary); }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    /* ================= BUTTONS & SHIMMER ================= */
+    .btn-vercel-primary {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #FFFFFF;
+      color: #030407;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 13px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 10px 30px rgba(255, 255, 255, 0.15);
+      border: none;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .btn-vercel-primary:hover {
+      transform: translateY(-2px);
+      background: #F1F5F9;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 14px 40px rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-vercel-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #E2E8F0;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 13px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border-bright);
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-vercel-secondary:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
+    }
+
+    .btn-shimmer-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+      color: #000000;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 13px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-shimmer-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5);
+    }
+
+    /* ================= ULTRA-SLIM VERCEL NAVBAR ================= */
+    .vercel-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(7, 9, 14, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .brand-text {
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+    .brand-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--color-primary-light);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-link {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      font-weight: 500;
+    }
+    .nav-link:hover {
+      color: #FFFFFF;
+    }
+
+    /* ================= SPOTLIGHT BENTO GRID SYSTEM ================= */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    /* Spotlight Card Engine */
+    .spotlight-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .spotlight-card:hover {
+      border-color: var(--border-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Radial Spotlight layer driven by JS pointer position */
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: radial-gradient(
+        400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(245, 158, 11, 0.18),
+        transparent 60%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Top hairline highlight */
+    .spotlight-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Bento Sizes */
+    .col-span-8 { grid-column: span 8; }
+    .col-span-4 { grid-column: span 4; }
+    .col-span-6 { grid-column: span 6; }
+    .col-span-12 { grid-column: span 12; }
+
+    /* ================= INFINITE MARQUEE TICKER ================= */
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      padding: 18px 0;
+      position: relative;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(7, 9, 14, 0.5);
+    }
+    .marquee-container::before,
+    .marquee-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee-container::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-black), transparent);
+    }
+    .marquee-container::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-black), transparent);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 35s linear infinite;
+      gap: 36px;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .marquee-item span {
+      color: #E2E8F0;
+    }
+
+    /* ================= COMMAND PALETTE QUICK STRIP ================= */
+    .command-strip {
+      background: rgba(13, 17, 25, 0.8);
+      border: 1px solid var(--border-bright);
+      border-radius: 14px;
+      padding: 8px 12px 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+      max-width: 680px;
+      margin: 0 auto;
+      backdrop-filter: blur(20px);
+    }
+    .command-input {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 15px;
+      font-family: var(--font-body);
+      flex-grow: 1;
+      outline: none;
+    }
+    .command-input::placeholder {
+      color: var(--text-dark);
+    }
+    .command-key {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: var(--text-muted);
+    }
+
+    /* ================= MOTION & REVEALS ================= */
+    .motion-enter {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: enterMotion 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    @keyframes enterMotion {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .col-span-8, .col-span-4, .col-span-6 { grid-column: span 12 !important; }
+      .nav-links { display: none !important; }
+      .bento-hero-img { height: 260px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Light Leak & Grid Mask -->
+  <div class="ambient-aurora"></div>
+  <div class="ambient-grid"></div>
+
+  <!-- ================= ULTRA-SLIM LINEAR/VERCEL NAVBAR ================= -->
+  <header class="vercel-nav">
+    <div class="container">
+      <div class="nav-inner">
+        
+        <!-- Brand -->
+        <a href="#inicio" class="brand-wrap">
+          <img src="assets/logo.jpg" alt="Ferrashop" class="brand-logo">
+          <span class="brand-text">FERRASHOP</span>
+          <span class="brand-tag">A CASA DOS PARAFUSOS</span>
+        </a>
+
+        <!-- Links -->
+        <nav class="nav-links">
+          <a href="#fixadores" class="nav-link">Fixadores</a>
+          <a href="#airless" class="nav-link">Airless</a>
+          <a href="#tramontina" class="nav-link">Tramontina PRO</a>
+          <a href="#agro" class="nav-link">Linha Agro</a>
+          <a href="#rodovia" class="nav-link">BR-153</a>
+        </nav>
+
+        <!-- Right Action -->
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Vim%20pelo%20site%20da%20Ferrashop." target="_blank" class="btn-vercel-secondary" style="padding: 7px 16px; font-size: 13px; border-radius: 8px;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
+            <span>Carlos no WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION (LINEAR/VERCEL STYLE) ================= -->
+  <section id="inicio" style="padding-top: 130px; padding-bottom: 60px; text-align: center;">
+    <div class="container">
+      
+      <!-- Shimmer Pill Badge -->
+      <div class="motion-enter" style="display: inline-block; margin-bottom: 24px;">
+        <a href="#airless" class="pill-badge">
+          <span class="pill-dot"></span>
+          <span>Novidade em Estoque: Máquinas de Pintura Airless & Parafusos 8.8</span>
+          <span style="color: var(--text-dark);">→</span>
+        </a>
+      </div>
+
+      <!-- Linear High-Impact Headline -->
+      <h1 class="gradient-heading motion-enter delay-1" style="font-size: clamp(38px, 5.5vw, 74px); line-height: 1.05; max-width: 980px; margin: 0 auto 24px;">
+        A infraestrutura de fixadores e ferramentas pesadas no Tocantins.
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="motion-enter delay-2" style="font-size: clamp(16px, 1.8vw, 20px); color: var(--text-muted); max-width: 680px; margin: 0 auto 36px; font-weight: 400; line-height: 1.6;">
+        Mais de 5.000 parafusos industriais, máquinas Airless de alta pressão, linha Tramontina PRO e ferragens pesadas direto no KM 472 da BR-153.
+      </p>
+
+      <!-- Command Palette Quick Strip (Linear Style ⌘K) -->
+      <div class="motion-enter delay-3" style="margin-bottom: 36px;">
+        <div class="command-strip">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-dark)" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="commandFilter" class="command-input" placeholder="Buscar parafuso, máquina airless, ferramenta ou cintas..." onkeyup="filterBentoGrid(this.value)">
+          <span class="command-key">ESC</span>
+          <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Gostaria%20de%20consultar%20disponibilidade%20de%20pe%C3%A7as%20no%20balc%C3%A3o." target="_blank" class="btn-shimmer-gold" style="padding: 9px 18px; font-size: 13px; border-radius: 8px;">
+            Cotar no Balcão
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Action Badges -->
+      <div class="motion-enter delay-3" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 13px; color: var(--text-muted);">
+        <span style="display: flex; align-items: center; gap: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Estoque Físico a Pronta Entrega
+        </span>
+        <span style="display: flex; align-items: center; gap: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Faturamento CNPJ & Produtor Rural
+        </span>
+        <span style="display: flex; align-items: center; gap: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Pátio para Carretas no KM 472
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INFINITE MARQUEE TICKER ================= -->
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <div class="marquee-item"><span>5.000+</span> ITENS EM FIXAÇÃO</div>
+      <div class="marquee-item"><span>TRAMONTINA PRO</span> OFICIAL</div>
+      <div class="marquee-item"><span>MÁQUINAS AIRLESS</span> 3000 PSI</div>
+      <div class="marquee-item"><span>PARAFUSOS 8.8 & 10.9</span> ALTA TRAÇÃO</div>
+      <div class="marquee-item"><span>CINTAS BR-153</span> CATRACA 10 TONELADAS</div>
+      <div class="marquee-item"><span>AGRO TOCANTINS</span> FERRAGENS PARA CURRAL</div>
+      <div class="marquee-item"><span>DEWALT</span> LINHA A BATERIA</div>
+      <div class="marquee-item"><span>CHUMBADORES CBA</span> PARABOLTS</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item"><span>5.000+</span> ITENS EM FIXAÇÃO</div>
+      <div class="marquee-item"><span>TRAMONTINA PRO</span> OFICIAL</div>
+      <div class="marquee-item"><span>MÁQUINAS AIRLESS</span> 3000 PSI</div>
+      <div class="marquee-item"><span>PARAFUSOS 8.8 & 10.9</span> ALTA TRAÇÃO</div>
+      <div class="marquee-item"><span>CINTAS BR-153</span> CATRACA 10 TONELADAS</div>
+      <div class="marquee-item"><span>AGRO TOCANTINS</span> FERRAGENS PARA CURRAL</div>
+      <div class="marquee-item"><span>DEWALT</span> LINHA A BATERIA</div>
+      <div class="marquee-item"><span>CHUMBADORES CBA</span> PARABOLTS</div>
+    </div>
+  </div>
+
+  <!-- ================= BENTO GRID INDUSTRIAL SYSTEM ================= -->
+  <section style="padding: 70px 0;">
+    <div class="container">
+      
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+        <div>
+          <span class="font-mono" style="font-size: 12px; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.1em;">ESTRUTURA DE BALCÃO</span>
+          <h2 class="font-display" style="font-size: 32px; font-weight: 800; color: #fff; margin-top: 4px;">
+            Linhas Especializadas em Destaque
+          </h2>
+        </div>
+        <div style="font-size: 14px; color: var(--text-muted);">
+          Passe o cursor sobre os cards para interagir:
+        </div>
+      </div>
+
+      <!-- Bento Grid Cards -->
+      <div class="bento-grid" id="bentoContainer">
+
+        <!-- CARD 1: Large Anchor (Parafusos & Fixadores) -->
+        <div class="spotlight-card col-span-8 bento-item" data-keywords="parafuso fixador sextavado brocante chumbador barra roscada inox" id="fixadores">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; height: 100%; align-items: center;" class="bento-inner-grid">
+            
+            <div style="padding: 36px; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <span class="brand-tag" style="margin-bottom: 12px; display: inline-block;">FIXADORES PESADOS</span>
+                <h3 class="font-display" style="font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 12px; line-height: 1.15;">
+                  A Casa dos Parafusos: mais de 5.000 tipos em estoque.
+                </h3>
+                <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+                  Sextavados em aço grau 5, 8.8 e 10.9 de alta tração. Autobrocantes para telhas, chumbadores mecânicos CBA e parabolts, buchas e barras roscadas milimétricas e em polegadas.
+                </p>
+              </div>
+
+              <div>
+                <div class="font-mono" style="font-size: 12px; color: var(--color-primary); margin-bottom: 14px;">
+                  UNC • UNF • MÉTRICA • ZINCADO • INOX 304
+                </div>
+                <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Preciso%20de%20cota%C3%A7%C3%A3o%20de%20PARAFUSOS%20E%20FIXADORES." target="_blank" class="btn-vercel-secondary" style="width: 100%;">
+                  <span>Cotar com Carlos no WhatsApp</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+
+            <div style="height: 100%; position: relative; min-height: 320px; overflow: hidden;" class="bento-hero-img">
+              <img src="assets/post_2_DdR7fHuvRpE.jpg" alt="Parafusos Ferrashop" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(13, 17, 25, 0.9) 0%, transparent 60%);"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CARD 2: Máquinas Airless (Highlight Card) -->
+        <div class="spotlight-card col-span-4 bento-item" data-keywords="airless maquina pintura tinta spray pulverizacao" id="airless" style="background: linear-gradient(135deg, rgba(20, 27, 41, 0.8) 0%, rgba(13, 17, 25, 0.9) 100%);">
+          <div style="padding: 32px; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <span class="brand-tag" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.35); color: #FCA5A5;">
+                  NOVIDADE EM ESTOQUE
+                </span>
+                <span class="font-mono" style="font-size: 11px; color: #10B981;">3.000 PSI</span>
+              </div>
+
+              <h3 class="font-display" style="font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 10px;">
+                Máquinas de Pintura Airless
+              </h3>
+              <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 18px;">
+                Rendimento contínuo até 4x superior sem névoa e sem desperdício de tinta. Ideal para construtoras, galpões e profissionais.
+              </p>
+            </div>
+
+            <div>
+              <div style="height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 18px; border: 1px solid var(--border-subtle);">
+                <img src="assets/airless_full_face.jpg" alt="Máquina Airless Ferrashop" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+              </div>
+              <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Gostaria%20de%20saber%20valores%20da%20M%C3%81QUINA%20DE%20PINTURA%20AIRLESS." target="_blank" class="btn-shimmer-gold" style="width: 100%; font-size: 14px; padding: 11px 18px;">
+                <span>Consultar Modelos Airless</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Tramontina PRO Elétrica & Manual -->
+        <div class="spotlight-card col-span-4 bento-item" data-keywords="tramontina ferramenta parafusadeira furadeira bateria martelete esmerilhadeira" id="tramontina">
+          <div style="padding: 28px; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+            <div>
+              <span class="brand-tag" style="margin-bottom: 12px; display: inline-block;">LINHA PROFISSIONAL</span>
+              <h3 class="font-display" style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px;">
+                Ferramentas Tramontina PRO
+              </h3>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+                Parafusadeiras a bateria 20V, marteletes rompedores, esmerilhadeiras, kits de carregadores rápidos e jogos manuais.
+              </p>
+            </div>
+
+            <div>
+              <div style="height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 16px; border: 1px solid var(--border-subtle);">
+                <img src="assets/post_4_DduAn7KT2Zs.jpg" alt="Tramontina PRO" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+              </div>
+              <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Gostaria%20de%20or%C3%A7ar%20FERRAMENTAS%20TRAMONTINA%20PRO." target="_blank" class="btn-vercel-secondary" style="width: 100%; font-size: 13px; padding: 10px 16px;">
+                <span>Ver Linha Tramontina</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: Ferragens de Curral & Agro -->
+        <div class="spotlight-card col-span-4 bento-item" data-keywords="agro curral fazenda porteira dobradica trinco arame mourão" id="agro">
+          <div style="padding: 28px; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+            <div>
+              <span class="brand-tag" style="margin-bottom: 12px; display: inline-block;">FORÇA NO CAMPO</span>
+              <h3 class="font-display" style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px;">
+                Ferragens Pesadas de Curral
+              </h3>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+                Dobradiças reforçadas para porteiras pesadas e bretes, trincos bate-fecha, esticadores de arame e parafusos de sustentação.
+              </p>
+            </div>
+
+            <div>
+              <div style="height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 16px; border: 1px solid var(--border-subtle);">
+                <img src="assets/post_7_DdqvX-zxT9P.jpg" alt="Ferragens de Curral" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+              </div>
+              <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Preciso%20de%20FERRAGENS%20DE%20CURRAL%20(dobradi%C3%A7as%20e%20trincos)." target="_blank" class="btn-vercel-secondary" style="width: 100%; font-size: 13px; padding: 10px 16px;">
+                <span>Cotar Ferragens de Curral</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5: Corredor Rodoviário BR-153 (Cintas & Logística) -->
+        <div class="spotlight-card col-span-4 bento-item" data-keywords="cinta amarração carga catraca caminhao rodovia br-153 patio carreta" id="rodovia">
+          <div style="padding: 28px; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+            <div>
+              <span class="brand-tag" style="margin-bottom: 12px; display: inline-block;">RODOVIA BR-153</span>
+              <h3 class="font-display" style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px;">
+                Cintas de Carga & Parada Rápida
+              </h3>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+                Cintas de 3t a 10t com catraca pesada. Acesso de pista com pátio nivelado para bitrens e carretas sem entrar na cidade.
+              </p>
+            </div>
+
+            <div>
+              <div style="height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 16px; border: 1px solid var(--border-subtle);">
+                <img src="assets/carlos_full_face.jpg" alt="Cintas de Carga BR-153" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+              </div>
+              <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Estou%20na%20BR-153%20e%20preciso%20de%20CINTAS%20DE%20CARGA." target="_blank" class="btn-vercel-secondary" style="width: 100%; font-size: 13px; padding: 10px 16px;">
+                <span>Cotar Cintas de Carga</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE WORKBENCH: INSPEÇÃO TÉCNICA DINÂMICA ================= -->
+  <section style="padding: 60px 0; background: rgba(10, 14, 22, 0.4); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 18px; margin-bottom: 30px;">
+        <div>
+          <span class="font-mono" style="font-size: 12px; color: var(--color-primary); text-transform: uppercase;">CONSULTORIA DE BALCÃO</span>
+          <h2 class="font-display" style="font-size: 28px; font-weight: 800; color: #fff;">
+            Não sabe o código do parafuso?
+          </h2>
+        </div>
+        <p style="font-size: 14px; color: var(--text-muted); max-width: 480px;">
+          Tire uma foto da peça quebrada ou desgastada. O consultor Carlos identifica o passo da rosca, diâmetro e dureza diretamente no WhatsApp.
+        </p>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-bright); border-radius: 16px; padding: 32px 36px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); display: flex; align-items: center; justify-content: center; color: var(--color-primary);">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          </div>
+          <div>
+            <div style="font-size: 18px; font-weight: 700; color: #fff;">Envio de Foto para Identificação</div>
+            <div style="font-size: 13px; color: var(--text-muted);">Mande imagem pelo celular e receba a resposta de estoque em minutos.</div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Vou%20te%20mandar%20uma%20foto%20do%20parafuso/pe%C3%A7a%20para%20voc%C3%AA%20identificar%20para%20mim." target="_blank" class="btn-vercel-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+          <span>Mandar Foto para o Carlos</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= LOCALIZAÇÃO & HORÁRIO ================= -->
+  <section style="padding: 70px 0;">
+    <div class="container">
+      
+      <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;" class="bento-inner-grid">
+        
+        <div>
+          <span class="brand-tag" style="margin-bottom: 12px; display: inline-block;">FÁCIL ACESSO</span>
+          <h2 class="font-display" style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 14px;">
+            Estrutura Física no KM 472
+          </h2>
+          <p style="font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">
+            Rodovia BR-153, Quadra 109, Lote 01 — Setor Milena, Paraíso do Tocantins - TO.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px; margin-bottom: 28px;">
+            <div style="color: #E2E8F0;">• Segunda a Sexta: <strong>07:30 às 18:00</strong></div>
+            <div style="color: #E2E8F0;">• Sábado: <strong>07:30 às 12:30</strong></div>
+            <div style="color: #E2E8F0;">• Contato Direto: <strong>(63) 99270-2799</strong></div>
+          </div>
+
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="https://maps.google.com/?q=Rodovia+BR-153+KM+472+Paraiso+do+Tocantins" target="_blank" class="btn-vercel-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+              <span>Abrir no Google Maps</span>
+            </a>
+            <a href="https://wa.me/5563992702799?text=Ol%C3%A1%20Carlos!%20Pode%20me%20mandar%20a%20localiza%C3%A7%C3%A3o%20em%20tempo%20real%20da%20loja%3F" target="_blank" class="btn-vercel-primary">
+              <span>Localização no WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <div style="height: 320px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-bright);">
+          <img src="assets/post_5_DdtYxGZxepb.jpg" alt="Fachada Ferrashop" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MINIMALIST VERCEL FOOTER ================= -->
+  <footer style="padding: 40px 0; border-top: 1px solid var(--border-subtle); background: var(--bg-black); font-size: 13px; color: var(--text-dark);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img src="assets/logo.jpg" alt="Ferrashop" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+          <span style="color: #E2E8F0; font-weight: 600;">Ferrashop | A Casa dos Parafusos</span>
+          <span>•</span>
+          <span>Paraíso do Tocantins - TO</span>
+        </div>
+
+        <div>
+          Desenvolvido com excelência por <strong style="color: #E2E8F0;">DLuz Digital</strong>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MOTION & SPOTLIGHT SCRIPT ================= -->
+  <script>
+    // Spotlight Pointer Engine (Linear / Vercel style)
+    const cards = document.querySelectorAll('.spotlight-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Command Bar Filter Engine
+    function filterBentoGrid(query) {
+      const q = query.toLowerCase().trim();
+      const items = document.querySelectorAll('.bento-item');
+      items.forEach(item => {
+        const kw = item.getAttribute('data-keywords') || '';
+        const text = item.innerText.toLowerCase();
+        if (!q || kw.includes(q) || text.includes(q)) {
+          item.style.display = '';
+          item.style.opacity = '1';
+        } else {
+          item.style.opacity = '0.2';
+        }
+      });
+    }
+
+    // Keyboard Shortcut ⌘K / Ctrl+K focus
+    window.addEventListener('keydown', e => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        const input = document.getElementById('commandFilter');
+        if (input) input.focus();
+      }
+      if (e.key === 'Escape') {
+        const input = document.getElementById('commandFilter');
+        if (input) {
+          input.value = '';
+          filterBentoGrid('');
+          input.blur();
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

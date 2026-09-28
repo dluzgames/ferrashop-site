@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Demonstração do Novo Site — Ferrashop A Casa dos Parafusos</title>
+<style>
+  :root {
+    --bg: #0B0F17;
+    --surface: #121824;
+    --ink: #F3F4F6;
+    --muted: #9CA3AF;
+    --acc: #F59E0B;
+    --line: #243047;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+  .stage { width: min(1200px, 96vw); margin: 0 auto; }
+  header { padding: 48px 0 28px; text-align: center; }
+  .kicker {
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--acc);
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    color: var(--ink);
+  }
+  h1 em { font-style: normal; color: var(--acc); }
+  .sub {
+    color: var(--muted);
+    max-width: 620px;
+    margin: 14px auto 0;
+    font-size: 16px;
+  }
+  .autor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .autor b { color: #fff; }
+  .frame {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    margin-top: 24px;
+  }
+  .frame .bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--line);
+    background: #18202F;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #475569; }
+  .bar span { font-size: 12px; color: var(--muted); margin-left: 8px; font-family: monospace; }
+  iframe {
+    display: block;
+    width: 100%;
+    height: 78vh;
+    min-height: 520px;
+    border: 0;
+    background: #0B0F17;
+  }
+  .cta { text-align: center; padding: 44px 0 60px; }
+  .cta p { color: var(--muted); max-width: 540px; margin: 0 auto 20px; font-size: 15px; }
+  .btn {
+    display: inline-block;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 12px;
+    font-size: 16px;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(37, 211, 102, 0.4);
+  }
+  .micro { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 24px 0 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Demonstração de Site Comercial & Balcão</div>
+    <h1>Ferrashop | A Casa dos Parafusos, veja como ficou a <em>nova versão</em> do seu site</h1>
+    <p class="sub">Estruturado sob medida para o segmento industrial e agro: destaque para parafusos pesados, linha Tramontina PRO, máquinas Airless, ferragens de curral e parada rápida na BR-153 com cotação direta no WhatsApp do Carlos.</p>
+    <div class="autor">Desenvolvido por <b>Duilio Luz • DLuz Digital</b> · Paraíso do Tocantins</div>
+  </header>
+</div>
+
+<div class="stage">
+  <div class="frame">
+    <div class="bar">
+      <i class="dot"></i><i class="dot"></i><i class="dot"></i>
+      <span>ferrashop.html (Visualização em Tempo Real)</span>
+    </div>
+    <iframe src="index.html" title="Nova versão Ferrashop"></iframe>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cta">
+    <p>Se gostarem do modelo e quiserem colocar no ar no domínio próprio da Ferrashop com suporte local em Paraíso, me chamem no WhatsApp pra gente alinhar!</p>
+    <a class="btn" href="https://wa.me/556399432564?text=Ol%C3%A1%2C%20Duilio!%20Vi%20a%20demonstra%C3%A7%C3%A3o%20do%20site%20da%20Ferrashop%20e%20gostei." target="_blank" rel="noopener">Falar com Duilio no WhatsApp</a>
+    <div class="micro">Sem compromisso — a demonstração fica disponível para avaliação da equipe da Ferrashop.</div>
+  </div>
+</div>
+
+<footer>Esta página é uma apresentação privada criada por Duilio Luz • DLuz Digital para a equipe da Ferrashop em Paraíso do Tocantins.</footer>
+</body>
+</html>
